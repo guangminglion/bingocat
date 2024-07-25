@@ -19,8 +19,9 @@ import './TONConnectPage.css';
 export const TONConnectPage: FC = () => {
   const wallet = useTonWallet();
   const utils = useUtils();
-
+  console.log(wallet);
   if (!wallet) {
+    console.log("not init wallet");
     return (
       <Placeholder
         className='ton-connect-page__placeholder'

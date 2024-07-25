@@ -17,6 +17,11 @@ import {
   Routes,
 } from 'react-router-dom';
 
+
+import { I18nextProvider } from 'react-i18next';
+
+import i18n from "../i18n/i18n.js";
+
 import { routes } from '@/navigation/routes.tsx';
 
 export const App: FC = () => {
@@ -50,16 +55,18 @@ export const App: FC = () => {
   }, [navigator]);
 
   return (
-    <AppRoot
-      appearance={miniApp.isDark ? 'dark' : 'light'}
-      platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}
-    >
-      <Router location={location} navigator={reactNavigator}>
-        <Routes>
-          {routes.map((route) => <Route key={route.path} {...route} />)}
-          <Route path='*' element={<Navigate to='/'/>}/>
-        </Routes>
-      </Router>
-    </AppRoot>
+    <I18nextProvider i18n={i18n} defaultNS={'translation'}>
+      <AppRoot
+        appearance={miniApp.isDark ? 'dark' : 'light'}
+        platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}
+      >
+        <Router location={location} navigator={reactNavigator}>
+          <Routes>
+            {routes.map((route) => <Route key={route.path} {...route} />)}
+            <Route path='*' element={<Navigate to='/'/>}/>
+          </Routes>
+        </Router>
+      </AppRoot>
+    </I18nextProvider>
   );
 };

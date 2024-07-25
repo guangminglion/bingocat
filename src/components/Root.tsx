@@ -32,7 +32,7 @@ const Inner: FC = () => {
       import('eruda').then((lib) => lib.default.init());
     }
   }, [debug]);
-
+  
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>
       <SDKProvider acceptCustomStyles debug={debug}>
